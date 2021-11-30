@@ -1,5 +1,7 @@
 # CTheWeather
 
+Weather info source: https://wttr.in/West+Lafayette+IN
+
 ## To Do
 
 - [ ] Display - Jonathan
