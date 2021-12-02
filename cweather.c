@@ -1,7 +1,8 @@
-// Last Revision: 12/1/2021 by Jon 
+//  Last Revision: 12/02/2021 by Jon
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <curl/curl.h>
 
 // ----------------------------------------------------------------------------
 // Prototypes
@@ -12,13 +13,30 @@ void displayMenu();
 int main()
 {
     displayMenu();
+
+
+    // Testing out curl function
+    CURL *curl;
+    CURLcode result;
+    curl = curl_easy_init();
+
+    // Set URL
+    curl_easy_setopt(curl, CURLOPT_URL, "https://wttr.in/?T");
+
+    // Perform the request which prints to stdout.
+    // Formatting needs to look better
+    result = curl_easy_perform(curl);
+
+
+    curl_easy_cleanup(curl);
     return 0;
 }
 
 // ----------------------------------------------------------------------------
 // Function declarations
 
-// weather conditions, humidity, temperature, wind, location, precipitation, moon phases, etc
+// Displays the menu that users will view to make their decision
+// on what they want to view.
 void displayMenu()
 {
   printf("\nWhat would you like to view for **INCLUDE LOCATION SOMEHOW***\n");
@@ -42,3 +60,4 @@ void displayMenu()
   printf("| 8 | History            |\n");
   printf("+------------------------+\n");
 }
+
