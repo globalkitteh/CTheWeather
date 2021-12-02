@@ -21,6 +21,7 @@ int main()
 
 
     // Testing out curl function
+    // https://www.devdungeon.com/content/curl-tutorial
     CURL *curl;
     CURLcode result;
     curl = curl_easy_init();
