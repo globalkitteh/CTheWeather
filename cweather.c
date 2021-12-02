@@ -1,5 +1,10 @@
 //  Last Revision: 12/02/2021 by Jon
 
+// To compiile the code: gcc -o cweather cweather.c -lcurl
+
+// If you are getting an error about #include <curl/curl.h>
+// you need to run: sudo apt install libcurl4-openssl-dev
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <curl/curl.h>
@@ -24,7 +29,6 @@ int main()
     curl_easy_setopt(curl, CURLOPT_URL, "https://wttr.in/?T");
 
     // Perform the request which prints to stdout.
-    // Formatting needs to look better
     result = curl_easy_perform(curl);
 
 
