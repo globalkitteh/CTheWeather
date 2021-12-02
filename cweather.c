@@ -21,13 +21,12 @@ int main()
 
 
     // Testing out curl function
-    // https://www.devdungeon.com/content/curl-tutorial
     CURL *curl;
     CURLcode result;
     curl = curl_easy_init();
 
     // Set URL
-    curl_easy_setopt(curl, CURLOPT_URL, "https://wttr.in/?T");
+    curl_easy_setopt(curl, CURLOPT_URL, "https://wttr.in/?format=j1"); // This will return the results in JSON format.
 
     // Perform the request which prints to stdout.
     result = curl_easy_perform(curl);
