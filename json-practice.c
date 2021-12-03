@@ -1,5 +1,5 @@
-// Last edited by: Jon Zambo
-// I have the Humidity, Precipitation, and Wind functions done.
+// Last edited by: Jon 12/02/2021
+// Temperature, humidity, precipitation, and wind work
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,12 +10,14 @@
 void getHumidity();
 void getPrecipitation();
 void getWind();
+void getTemp();
 
 int main() 
 {
+	getTemp();
+	getHumidity();
+	getPrecipitation();
 	getWind();
-	// getHumidity();
-	// getPrecipitation();
 	return 0;
 }
 
@@ -93,4 +95,29 @@ void getWind()
 		printf("windspeedKmph=%s\n", json_object_get_string(windSpeedKmph));
 
 	}
+}
+
+void getTemp()
+{
+	int arraylen, i;
+	struct json_object *current_condition_obj, *current_condition_array, *current_condition_array_obj, *temp_F, *temp_C;
+	static const char filename[] = "test.json";
+	current_condition_obj = json_object_from_file(filename);
+	current_condition_array = json_object_object_get(current_condition_obj, "current_condition");
+
+	// current_condition_array is an array of objects
+	arraylen = json_object_array_length(current_condition_array);
+
+	for (i = 0; i < arraylen; i++) {
+		// get the i-th object in current_condition_array
+		current_condition_array_obj = json_object_array_get_idx(current_condition_array, i);
+
+		// get the precipitation attribute in the i-th object
+		temp_F = json_object_object_get(current_condition_array_obj, "temp_F");
+		temp_C = json_object_object_get(current_condition_array_obj, "temp_C");
+		// print out the precipitation attributes
+		printf("temp_F=%s\n", json_object_get_string(temp_F));
+		printf("temp_C=%s\n", json_object_get_string(temp_C));
+	}
+
 }
