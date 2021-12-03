@@ -29,10 +29,56 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 
 int main()
 {
+  // Gathers the weather information and stores it in JSON format to page.out
   getWeather();
+
+  int repeat = 1;
+  while(repeat == 1)
+  {
+  // Displays the interactive menu.
   displayMenu();
+
+  int decision = 0;
+  scanf("%d", &decision);
+  switch (decision)
+  {
+  case 1:
+    /* code */
+    break;
   
- 
+  case 2:
+    /* code */
+    break;
+
+  case 3:
+  /* code */
+    break;
+
+  case 4:
+  /* code */
+    break;
+
+  case 5:
+  /* code */
+    break;
+
+  case 6:
+  /* code */
+    break;
+
+  case 7:
+  /* code */
+    break;
+
+  case 8:
+  /* code */
+    break;
+
+  default:
+    break;
+  }
+  }
+
   return 0;
 
 }
