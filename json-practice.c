@@ -1,5 +1,5 @@
 // Last edited by: Jon 12/04/2021
-// Temperature, humidity, precipitation, wind, and location work
+// Temperature, humidity, precipitation, wind, location, and astronomy work
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,14 +13,16 @@ void getPrecipitation();
 void getWind();
 void getTemp();
 void getLocation();
+void getAstronomy();
 
 int main() 
 {
-	// getTemp();
-	// getHumidity();
-	// getPrecipitation();
-	// getWind();
+	getTemp();
+	getHumidity();
+	getPrecipitation();
+	getWind();
 	getLocation();
+	getAstronomy();
 	return 0;
 }
 
@@ -156,13 +158,69 @@ void getLocation()
 
 		areaNameVal = json_object_object_get(areaName_obj, "value");
 
-		printf("value=%s\n", json_object_get_string(areaNameVal));
+		printf("area=%s\n", json_object_get_string(areaNameVal));
 
 	// Gets the value of region
 		region_obj = json_object_array_get_idx(region,0);
 
 		regionVal = json_object_object_get(region_obj, "value");
 
-		printf("value=%s\n", json_object_get_string(regionVal));
+		printf("region=%s\n", json_object_get_string(regionVal));
+
+}
+
+void getAstronomy()  
+{
+	int arraylen, i;
+	struct json_object *weather_obj, *weather_array, *weather_array_obj, *moon_phase, *moonrise, *moonset, *sunrise, *sunset;
+	struct json_object *moon_phase_obj, *moon_phase_Val;
+	struct json_object *moonrise_obj, *moonrise_Val;
+	struct json_object *moonset_obj, *moonset_Val;
+	struct json_object *sunrise_obj, *sunrise_Val;
+	struct json_object *sunset_obj, *sunset_Val;
+
+	static const char filename[] = "test.json";
+	weather_obj = json_object_from_file(filename);
+	weather_array = json_object_object_get(weather_obj, "weather");
+
+	// weather_array is an array of objects
+	// arraylen = json_object_array_length(weather_array);
+
+	for (i = 0; i < 1; i++) {
+		// get the i-th object in weather_array
+		weather_array_obj = json_object_array_get_idx(weather_array, i);
+
+		// get the astronomy attributes in the i-th object
+		moon_phase = json_object_object_get(weather_array_obj, "astronomy");
+
+		// print out the areaName and region attributes.
+		// printf("astronomy=%s\n", json_object_get_string(areaName));
+		// printf("region=%s\n", json_object_get_string(region));
+	}
+	
+	// Gets the moon_phase
+	moon_phase_obj = json_object_array_get_idx(moon_phase,0);
+	moon_phase_Val = json_object_object_get(moon_phase_obj, "moon_phase");
+	printf("moon phase=%s\n", json_object_get_string(moon_phase_Val));
+
+	// Gets the moonrise
+	moonrise_obj = json_object_array_get_idx(moon_phase,0);
+	moonrise_Val = json_object_object_get(moonrise_obj, "moonrise");
+	printf("moonrise=%s\n", json_object_get_string(moonrise_Val));
+
+	// Gets the moonset
+	moonset_obj = json_object_array_get_idx(moon_phase,0);
+	moonset_Val = json_object_object_get(moonset_obj, "moonset");
+	printf("moonset=%s\n", json_object_get_string(moonset_Val));
+
+	// Gets the sunrise
+	sunrise_obj = json_object_array_get_idx(moon_phase,0);
+	sunrise_Val = json_object_object_get(sunrise_obj, "sunrise");
+	printf("sunrise=%s\n", json_object_get_string(sunrise_Val));
+	
+	// Gets the sunset
+	sunset_obj = json_object_array_get_idx(moon_phase,0);
+	sunset_Val = json_object_object_get(sunset_obj, "sunset");
+	printf("susnet=%s\n", json_object_get_string(sunset_Val));
 
 }
