@@ -1,6 +1,4 @@
-
-   
-//  Last Revision: 12/02/2021 by Jon
+  //  Last Revision: 12/04/2021 by Jon
 
 // To compiile the code: gcc -o cweather cweather.c -lcurl
 
