@@ -1,6 +1,6 @@
-  //  Last Revision: 12/04/2021 by Jon
+//  Last Revision: 12/04/2021 by Jon
 
-// To compiile the code: gcc -o cweather cweather.c -lcurl
+// To compiile the code: gcc -o cweather cweather.c -lcurl -ljson-c
 
 // If you are getting an error about #include <curl/curl.h>
 // you need to run: sudo apt install libcurl4-openssl-dev
