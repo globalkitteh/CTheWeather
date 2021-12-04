@@ -24,6 +24,10 @@ void getWind();
 void getTemp();
 void getLocation();
 void getAstronomy();
+void sun();
+void cloud();
+void rain();
+void partlyCloudy();
 
 // ----------------------------------------------------------------------------
 
@@ -87,7 +91,12 @@ int main()
     break;
 
   case 8:
-  /* code */
+    // Testing design functions
+    sun();
+    cloud();
+    rain();
+    partlyCloudy();
+    exit(1);
     break;
 
   default:
@@ -132,6 +141,30 @@ void displayMenu()
 
 void getWeather()
 {
+/*prefix = https://wttr.in/
+suffix = ?format=j1
+
+if the user enters: Paris
+
+Make the URL: https://wttr.in/Paris?format=j1
+
+Basically it would be prefix + user input + suffix */
+
+
+  char prefix[] = "https://wttr.in/";
+  char suffix[] = "?format=j1";
+  char userLocation[100];
+
+  printf("Enter your location:\nFOR TESTING PURPOSES use Paris ");
+  gets(userLocation);
+
+
+  strcat(prefix, userLocation);
+  strcat(prefix, suffix);
+  printf("URL is %s\n", prefix);
+
+
+
   CURL *curl_handle;
   static const char *pagefilename = "page.json";
   FILE *pagefile;
@@ -142,7 +175,7 @@ void getWeather()
   curl_handle = curl_easy_init();
  
   /* set URL to get here */
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "https://wttr.in/?format=j1");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, prefix);
  
   /* Switch on full protocol/debug output while testing */
   curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
@@ -371,4 +404,41 @@ void getAstronomy()
 	sunset_Val = json_object_object_get(sunset_obj, "sunset");
 	printf("Sunset: %s\n", json_object_get_string(sunset_Val));
 
+}
+
+// Prints out a sun design
+void sun()
+{
+  printf("\n     \\   / \n");
+  printf("      .-.\n");
+  printf("  -- (   ) --\n");
+  printf("      `-'\n");
+  printf("     /   \\ \n\n");
+}
+
+// Prints out a cloud design
+void cloud()
+{
+  printf("\n     .--. \n");
+  printf("  .-(    ).\n");
+  printf(" (___.__)__) \n\n");
+}
+
+// Prints out a rain design 
+void rain()
+{
+  printf("\n     .--. \n");
+  printf("  .-(    ).\n");
+  printf(" (___.__)__) \n");
+  printf(" '  '  '  ' \n");
+  printf("  '  '  ' ' \n\n");
+}
+
+// Prints a partly cloudy design
+void partlyCloudy()
+{
+  printf("\n   \\ /\n");
+  printf("- /' '\\ .--. \n");
+  printf("  \\_ .-(    ).\n");
+  printf("  / (___.__)__) \n\n");
 }
