@@ -1,0 +1,46 @@
+prefix = https://wttr.in/
+suffix = ?format=j1
+
+if the user enters: Paris
+
+Make the URL: https://wttr.in/Paris?format=j1
+
+Basically it would be prefix + user input + suffix
+
+
+
+// this is the way to connect the strings to create the unique URL using user input.
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+/*prefix = https://wttr.in/
+suffix = ?format=j1
+
+if the user enters: Paris
+
+Make the URL: https://wttr.in/Paris?format=j1
+
+Basically it would be prefix + user input + suffix */
+
+
+    char prefix[] = "https://wttr.in/";
+    char suffix[] = "?format=j1";
+    char userLocation[100];
+
+    printf("Enter your location: ");
+    gets(userLocation);
+
+
+    strcat(prefix, userLocation);
+    strcat(prefix, suffix);
+    printf("URL is %s\n", prefix);
+
+    return 0;
+
+}
