@@ -40,6 +40,18 @@ Basically it would be prefix + user input + suffix */
     strcat(prefix, userLocation);
     strcat(prefix, suffix);
     printf("URL is %s\n", prefix);
+    
+   //cloud
+    printf("     .--. \n");
+    printf("  .-(    ).\n");
+    printf(" (___.__)__) \n");
+
+    //rain
+    printf("     .--. \n");
+    printf("  .-(    ).\n");
+    printf(" (___.__)__) \n");
+    printf(" '  '  '  ' \n");
+    printf("  '  '  ' ' \n");
 
     return 0;
 
