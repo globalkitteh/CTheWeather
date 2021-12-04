@@ -52,6 +52,12 @@ Basically it would be prefix + user input + suffix */
     printf(" (___.__)__) \n");
     printf(" '  '  '  ' \n");
     printf("  '  '  ' ' \n");
+    
+    //partly cloudy
+    printf("   \\ /\n");
+    printf("- /' '\\ .--. \n");
+    printf("  \\_ .-(    ).\n");
+    printf("  / (___.__)__) \n");
 
     return 0;
 
