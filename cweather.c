@@ -1,4 +1,4 @@
- //  Last Revision: 12/04/2021 by Jon
+//  Last Revision: 12/04/2021 by Jon
 
 // To compiile the code: gcc -o cweather cweather.c -lcurl -ljson-c
 
@@ -35,7 +35,7 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 
 int main()
 {
-  // Gathers the weather information and stores it in JSON format to page.out
+  // Gathers the weather information and stores it in JSON format to page.json
   getWeather();
 
   int repeat = 1;
@@ -198,7 +198,7 @@ void getPrecipitation()
 {
 	int arraylen, i;
 	struct json_object *current_condition_obj, *current_condition_array, *current_condition_array_obj, *precipIn, *precipMM;
-	static const char filename[] = "test.json";
+	static const char filename[] = "page.json";
 	current_condition_obj = json_object_from_file(filename);
 	current_condition_array = json_object_object_get(current_condition_obj, "current_condition");
 
@@ -223,7 +223,7 @@ void getWind()
 {
 	int arraylen, i;
 	struct json_object *current_condition_obj, *current_condition_array, *current_condition_array_obj, *windDirDegree, *windSpeedKmph, *windSpeedMiles;
-	static const char filename[] = "test.json";
+	static const char filename[] = "page.json";
 	current_condition_obj = json_object_from_file(filename);
 	current_condition_array = json_object_object_get(current_condition_obj, "current_condition");
 
@@ -252,7 +252,7 @@ void getTemp()  // Add feels like
 {
 	int arraylen, i;
 	struct json_object *current_condition_obj, *current_condition_array, *current_condition_array_obj, *temp_F, *temp_C;
-	static const char filename[] = "test.json";
+	static const char filename[] = "page.json";
 	current_condition_obj = json_object_from_file(filename);
 	current_condition_array = json_object_object_get(current_condition_obj, "current_condition");
 
@@ -263,10 +263,10 @@ void getTemp()  // Add feels like
 		// get the i-th object in current_condition_array
 		current_condition_array_obj = json_object_array_get_idx(current_condition_array, i);
 
-		// get the precipitation attribute in the i-th object
+		// get the temperature attribute in the i-th object
 		temp_F = json_object_object_get(current_condition_array_obj, "temp_F");
 		temp_C = json_object_object_get(current_condition_array_obj, "temp_C");
-		// print out the precipitation attributes
+		// print out the temperature attributes
 		printf("Farenheit Temperature: %s F\n", json_object_get_string(temp_F));
 		printf("Celsuis Temperature: %s C\n", json_object_get_string(temp_C));
 	}
@@ -278,7 +278,7 @@ void getLocation()
 	int arraylen, i;
 	struct json_object *nearest_area_obj, *nearest_area_array, *nearest_area_array_obj, *areaName, *region;
 	struct json_object *areaName_obj, *areaNameVal, *region_obj, *regionVal;
-	static const char filename[] = "test.json";
+	static const char filename[] = "page.json";
 	nearest_area_obj = json_object_from_file(filename);
 	nearest_area_array = json_object_object_get(nearest_area_obj, "nearest_area");
 
@@ -327,7 +327,7 @@ void getAstronomy()
 	struct json_object *sunrise_obj, *sunrise_Val;
 	struct json_object *sunset_obj, *sunset_Val;
 
-	static const char filename[] = "test.json";
+	static const char filename[] = "page.json";
 	weather_obj = json_object_from_file(filename);
 	weather_array = json_object_object_get(weather_obj, "weather");
 
