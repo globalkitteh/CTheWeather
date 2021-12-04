@@ -35,7 +35,7 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 
 int main()
 {
-  // Gathers the weather information and stores it in JSON format to page.out
+  // Gathers the weather information and stores it in JSON format to page.json
   getWeather();
 
   int repeat = 1;
