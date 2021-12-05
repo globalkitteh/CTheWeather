@@ -1,4 +1,5 @@
-//  Last Revision: 12/04/2021 by Jon
+// Project Title: CTheWeather
+// Description: Linked List-based program to retrieve and display weather data
 
 // To compiile the code: gcc -o cweather cweather.c -lcurl -ljson-c
 
@@ -15,6 +16,17 @@
 #include <string.h>
 
 // ----------------------------------------------------------------------------
+// Structure definition
+struct Node 			// WIP, will figure out what fields exactly we want to save
+{
+    char date[10];		// format YYYYMMDD
+    double temp;
+    char PUID[11];
+    int age;
+    struct Node *next;
+};
+
+// ----------------------------------------------------------------------------
 // Prototypes
 void displayMenu();
 void getWeather();
@@ -29,6 +41,18 @@ void cloud();
 void rain();
 void partlyCloudy();
 
+// Linked Lists
+void createTempNode();
+void CreateListNoNodes();
+void InsertFront();
+void DeleteEnd();
+
+// Global pointer definition
+
+struct Node *start;
+struct Node *temp;
+struct Node *current;
+
 // ----------------------------------------------------------------------------
 
 static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
@@ -36,6 +60,8 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 	size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
 	return written;
 }
+
+// ----------------------------------------------------------------------------
 
 int main()
 {
@@ -436,4 +462,70 @@ void partlyCloudy()
 	printf("- /' '\\ .--. \n");
 	printf("  \\_ .-(    ).\n");
 	printf("  / (___.__)__) \n\n");
+}
+
+// Linked List functions ------------------------------------------------------
+
+void createTempNode() 		// needs to be reworked for weather
+{
+    // char fName[20];
+    // char lName[20];
+    // char PUID[11];
+    // int age;
+
+    // printf("\nCreating New Node: ");
+    // printf("\nEnter fname: ");
+    // scanf("%s", fName);
+    // printf("\nEnter lname: ");
+    // scanf("%s", lName);
+    // printf("\nEnter PUID (10-digit): ");
+    // scanf("%s", PUID);
+    // printf("\nEnter Age: ");
+    // scanf("%d", &age);
+
+    temp=(struct Node *)malloc(sizeof(struct Node));
+
+    // temp->age = age;
+
+    // strcpy(temp->PUID, PUID);
+    // strcpy(temp->fName, fName);
+    // strcpy(temp->lName, lName);
+    temp->next = NULL;
+}
+
+void CreateListNoNodes()
+{
+    // empties start just in case, makes the list memory nice and clean for
+    //  future use
+    start = NULL;
+}
+
+// Insert a new node at the beginning, re-link the things
+void InsertFront()
+{
+    createTempNode();
+
+    // we have start pointer -> node 1
+    // we have temp sitting to the side
+
+    current = start;
+    start = temp;
+    temp->next = current;
+    current = NULL;
+}
+
+// Deletes the last node
+void DeleteEnd()
+{
+    current = start;
+
+    if (current->next != NULL)
+    {
+        while(current->next->next != NULL)
+        {
+            current = current->next;
+        }
+    }
+
+    current->next=NULL;
 }
