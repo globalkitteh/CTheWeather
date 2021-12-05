@@ -189,6 +189,8 @@ Make the URL: https://wttr.in/Paris?format=j1
 
 	printf("[FOR TESTING PURPOSES enter Paris]\n");	// debug, can remove
 	printf("Enter your location: ");
+    scanf("%s", userLocation);
+	// swapped because gets can cause buffer overflow sometimes
 
 	strcat(prefix, userLocation);			// add location to beginning
 	strcat(prefix, suffix);					// append suffix to start+location
