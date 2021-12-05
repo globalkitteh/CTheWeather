@@ -21,8 +21,8 @@ struct Node 			// WIP, will figure out what fields exactly we want to save
 {
     char date[10];		// format YYYYMMDD
     double temp;
-    char PUID[11];
-    int age;
+    // char PUID[11];
+    // int age;
     struct Node *next;
 };
 
@@ -48,10 +48,12 @@ void InsertFront();
 void DeleteEnd();
 
 // Global pointer definition
-
 struct Node *start;
 struct Node *temp;
 struct Node *current;
+
+// Global access to entered location - WIP, not sure why it fails
+// char *userLocation;
 
 // ----------------------------------------------------------------------------
 
@@ -78,50 +80,55 @@ int main()
 		scanf("%d", &decision);
 		switch (decision)
 		{
-		case 1:
+		case 1: 			// Weather condition
 			break;
 
-		case 2:
+		case 2:				// Humidity
 			getLocation();
 			getHumidity();
 			exit(1);
 			break;
 
-		case 3:
+		case 3:				// Temperature
 			getLocation();
 			getTemp();
 			exit(1);
 			break;
 
-		case 4:
+		case 4:				// Wind
 			getLocation();
 			getWind();
 			exit(1);
 			break;
 
-		case 5:
+		case 5:				// Location
 			getLocation();
 			exit(1);
 			break;
 
-		case 6:
+		case 6:				// Precipitation
 			getLocation();
 			getPrecipitation();
 			exit(1);
 			break;
 
-		case 7:
+		case 7:				// Astronomy
 			getLocation();
 			getAstronomy();
 			exit(1);
 			break;
 
-		case 8:
+		case 8:				// History (eventually)
 			// Testing design functions
 			sun();
 			cloud();
 			rain();
 			partlyCloudy();
+			exit(1);
+			break;
+
+		case 9:				// exit
+			repeat = 0;
 			exit(1);
 			break;
 
@@ -141,7 +148,7 @@ int main()
 void displayMenu()
 {
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\nWhat would you like to view for **INCLUDE LOCATION SOMEHOW***\n");
+	// is this necessary? ^^^ -gk
 	printf("Select the number corresponding to the function you'd like to view.\n");
 	printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
 	printf("\n+------------------------+\n");
@@ -165,25 +172,27 @@ void displayMenu()
 
 void getWeather()
 {
-	/*prefix = https://wttr.in/
+	/*
+	prefix = https://wttr.in/
 suffix = ?format=j1
 
 if the user enters: Paris
 
 Make the URL: https://wttr.in/Paris?format=j1
 
-Basically it would be prefix + user input + suffix */
+	Basically it would be prefix + user input + suffix 
+	*/
 
 	char prefix[] = "https://wttr.in/";
 	char suffix[] = "?format=j1";
 	char userLocation[100];
 
-	printf("Enter your location:\nFOR TESTING PURPOSES use Paris ");
-	gets(userLocation);
+	printf("[FOR TESTING PURPOSES enter Paris]\n");	// debug, can remove
+	printf("Enter your location: ");
 
-	strcat(prefix, userLocation);
-	strcat(prefix, suffix);
-	printf("URL is %s\n", prefix);
+	strcat(prefix, userLocation);			// add location to beginning
+	strcat(prefix, suffix);					// append suffix to start+location
+	printf("\nURL is %s\n", prefix);
 
 	CURL *curl_handle;
 	static const char *pagefilename = "page.json";
