@@ -167,7 +167,7 @@ void displayMenu()
 	printf("| 8 | History            |\n");
 	printf("| 9 | Quit               |\n");
 	printf("+------------------------+\n");
-	printf("#> \n");
+	printf("> ");
 }
 
 void getWeather()
