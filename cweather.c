@@ -163,7 +163,7 @@ void displayMenu()
 	printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
 	printf("\n+------------------------+\n");
 	printf("|    CTheWeather Menu    |\n");
-	printf("+------------------------+\n");
+	printf("+---+--------------------+\n");
 	printf("| 0 | Forecast           |\n");
 	printf("| 1 | Weather Condition  |\n");
 	printf("| 2 | Humidity           |\n");
@@ -173,7 +173,7 @@ void displayMenu()
 	printf("| 6 | Precipitation      |\n");
 	printf("| 7 | Astronomy          |\n");
 	printf("| 8 | Quit               |\n");
-	printf("+------------------------+\n");
+	printf("+---+--------------------+\n");
 	printf("> ");
 }
 
