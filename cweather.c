@@ -141,9 +141,7 @@ int main()
 // on what they want to view.
 void displayMenu()
 {
-	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	// is this necessary? ^^^ -gk
-	printf("\nWhat would you like to view for ");
+	// printf("\nWhat would you like to view for ");
 	// printf("%s\n",userLocation);		// will add user location if made global
 	printf("\n");
 	// printf("Select the number corresponding to the function you'd like to view.\n");
