@@ -2,6 +2,14 @@
 
 Weather info source: https://wttr.in/West+Lafayette+IN
 
+## Flow
+
+Justin - Startup
+Justin - 1 - Forecast 
+Jonathan -
+
+Justin - Error Catching
+
 ## To Do
 
 - [ ] Display - Jonathan
