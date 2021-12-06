@@ -86,8 +86,7 @@ int main()
 		scanf("%d", &decision);
 		switch (decision)
 		{
-		case 0: 			// Weather condition
-			createHistNode();
+		case 0: 			// Forecast
 			display();
 			break;
 
@@ -129,11 +128,7 @@ int main()
 			exit(1);
 			break;
 
-		case 8:				// History
-			display();
-			break;
-
-		case 9:				// Exit
+		case 8:				// Exit
 			// Testing design functions
 			sun();
 			cloud();
@@ -169,7 +164,7 @@ void displayMenu()
 	printf("\n+------------------------+\n");
 	printf("|    CTheWeather Menu    |\n");
 	printf("+------------------------+\n");
-	printf("| 0 | Save Weather       |\n");
+	printf("| 0 | Forecast           |\n");
 	printf("| 1 | Weather Condition  |\n");
 	printf("| 2 | Humidity           |\n");
 	printf("| 3 | Temperature        |\n");
@@ -177,8 +172,7 @@ void displayMenu()
 	printf("| 5 | Location           |\n");
 	printf("| 6 | Precipitation      |\n");
 	printf("| 7 | Astronomy          |\n");
-	printf("| 8 | History            |\n");
-	printf("| 9 | Quit               |\n");
+	printf("| 8 | Quit               |\n");
 	printf("+------------------------+\n");
 	printf("> ");
 }
