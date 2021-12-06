@@ -149,25 +149,25 @@ void displayMenu()
 {
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	// is this necessary? ^^^ -gk
+	printf("\nWhat would you like to view for ");
+	// printf("%s\n",userLocation);		// will add user location if made global
+	printf("\n");
 	printf("Select the number corresponding to the function you'd like to view.\n");
 	printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
 	printf("\n+------------------------+\n");
-	printf("| 1 | Weather Condition  |\n");
-	printf("|------------------------|\n");
-	printf("| 2 | Humidity           |\n");
-	printf("|------------------------|\n");
-	printf("| 3 | Temperature        |\n");
-	printf("|------------------------|\n");
-	printf("| 4 | Wind               |\n");
-	printf("|------------------------|\n");
-	printf("| 5 | Location           |\n");
-	printf("|------------------------|\n");
-	printf("| 6 | Precipitation      |\n");
-	printf("|------------------------|\n");
-	printf("| 7 | Astronomy          |\n");
-	printf("|------------------------|\n");
-	printf("| 8 | History            |\n");
+	printf("|    CTheWeather Menu    |\n");
 	printf("+------------------------+\n");
+	printf("| 1 | Weather Condition  |\n");
+	printf("| 2 | Humidity           |\n");
+	printf("| 3 | Temperature        |\n");
+	printf("| 4 | Wind               |\n");
+	printf("| 5 | Location           |\n");
+	printf("| 6 | Precipitation      |\n");
+	printf("| 7 | Astronomy          |\n");
+	printf("| 8 | History            |\n");
+	printf("| 9 | Quit               |\n");
+	printf("+------------------------+\n");
+	printf("#> \n");
 }
 
 void getWeather()
