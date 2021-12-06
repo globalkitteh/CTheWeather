@@ -86,60 +86,47 @@ int main()
 		scanf("%d", &decision);
 		switch (decision)
 		{
-		case 0: 			// Forecast
+		case 1: 			// Forecast
 			display();
-			break;
-
-		case 1: 			// Weather condition
 			break;
 
 		case 2:				// Humidity
 			getLocation();
 			getHumidity();
-			exit(1);
 			break;
 
 		case 3:				// Temperature
 			getLocation();
 			getTemp();
-			exit(1);
 			break;
 
 		case 4:				// Wind
 			getLocation();
 			getWind();
-			exit(1);
 			break;
 
 		case 5:				// Location
 			getLocation();
-			exit(1);
 			break;
 
 		case 6:				// Precipitation
 			getLocation();
 			getPrecipitation();
-			exit(1);
 			break;
 
 		case 7:				// Astronomy
 			getLocation();
 			getAstronomy();
-			exit(1);
 			break;
 
 		case 8:				// Exit
-			// Testing design functions
-			sun();
-			cloud();
-			rain();
-			partlyCloudy();
-
 			repeat = 0;
-			exit(1);
 			break;
 
 		default:
+			printf("\n\n");
+			printf("\nPlease select the menu option you would like to use.\n");
+			printf("\n\n");
 			break;
 		}
 	}
@@ -159,13 +146,12 @@ void displayMenu()
 	printf("\nWhat would you like to view for ");
 	// printf("%s\n",userLocation);		// will add user location if made global
 	printf("\n");
-	printf("Select the number corresponding to the function you'd like to view.\n");
-	printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
+	// printf("Select the number corresponding to the function you'd like to view.\n");
+	// printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
 	printf("\n+------------------------+\n");
 	printf("|    CTheWeather Menu    |\n");
 	printf("+---+--------------------+\n");
-	printf("| 0 | Forecast           |\n");
-	printf("| 1 | Weather Condition  |\n");
+	printf("| 1 | Forecast           |\n");
 	printf("| 2 | Humidity           |\n");
 	printf("| 3 | Temperature        |\n");
 	printf("| 4 | Wind               |\n");
@@ -199,11 +185,10 @@ void getWeather()
 	printf("Enter your location (replace spaces with +): ");
 
     scanf("%s", userLocation);
-	// swapped because gets can cause buffer overflow sometimes
 	
 	strcat(prefix, userLocation);			// add location to beginning
 	strcat(prefix, suffix);					// append suffix to start+location
-	printf("\nURL is %s\n", prefix);
+	// printf("\nURL is %s\n", prefix);
 
 	CURL *curl_handle;
 	static const char *pagefilename = "page.json";
@@ -218,10 +203,10 @@ void getWeather()
 	curl_easy_setopt(curl_handle, CURLOPT_URL, prefix);
 
 	/* Switch on full protocol/debug output while testing */
-	curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
+	curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 0L);
 
 	/* disable progress meter, set to 0L to enable it */
-	curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1L);
+	curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0L);
 
 	/* send all data to this function  */
 	curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
