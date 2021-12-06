@@ -48,7 +48,6 @@ void partlyCloudy();
 // Linked Lists
 void createHistNode();
 void CreateListNoNodes();
-void InsertFront();
 void DeleteEnd();
 void display();
 
@@ -534,20 +533,6 @@ void CreateListNoNodes()
     // empties start just in case, makes the list memory nice and clean for
     //  future use
     start = NULL;
-}
-
-// Insert a new node at the beginning, re-link the things
-void InsertFront()
-{
-    createHistNode();
-
-    // we have start pointer -> node 1
-    // we have temp sitting to the side
-
-    current = start;
-    start = temp;
-    temp->next = current;
-    current = NULL;
 }
 
 // Deletes the last node
