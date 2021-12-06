@@ -82,8 +82,9 @@ int main()
 		// Displays the interactive menu.
 		displayMenu();
 
-		int decision = 0;
-		scanf("%d", &decision);
+		int decision = 0; 		// set input choice
+		scanf("%i", &decision);
+		
 		switch (decision)
 		{
 		case 1: 			// Forecast
@@ -125,7 +126,7 @@ int main()
 
 		default:
 			printf("\n\n");
-			printf("\nPlease select the menu option you would like to use.\n");
+			printf("\nMenu option out of range, select from above.");
 			printf("\n\n");
 			break;
 		}
@@ -143,7 +144,6 @@ void displayMenu()
 {
 	// printf("\nWhat would you like to view for ");
 	// printf("%s\n",userLocation);		// will add user location if made global
-	printf("\n");
 	// printf("Select the number corresponding to the function you'd like to view.\n");
 	// printf("For example, 1 would display the Weather Condition, 2 would display Humidity, etc.\n");
 	printf("\n+------------------------+\n");
@@ -301,7 +301,7 @@ void getWind()
 		// print out the wind attributes
 		printf("Wind Direction Degree: %s\n", json_object_get_string(windDirDegree));
 		printf("Wind Speed(mph): %smph\n", json_object_get_string(windSpeedMiles));
-		printf("Wind Speed(kmph): %s\nkmph", json_object_get_string(windSpeedKmph));
+		printf("Wind Speed(kmph): %skmph\n", json_object_get_string(windSpeedKmph));
 	}
 }
 
@@ -512,22 +512,6 @@ void CreateListNoNodes()
     start = NULL;
 }
 
-// Deletes the last node
-void DeleteEnd()
-{
-    current = start;
-
-    if (current->next != NULL)
-    {
-        while(current->next->next != NULL)
-        {
-            current = current->next;
-        }
-    }
-
-    current->next=NULL;
-}
-
 // Prints out the list
 void display()
 {
@@ -537,8 +521,7 @@ void display()
 
     while (current != NULL)
     {
-        printf("\nNode %i\n", i);
-		printf("---- %s ----\n",current->date);
+		printf("\n\n---- %s ----\n",current->date);
 		printf("Avg Temp (F): %i\n",current->avgTempF);
 		printf("Max Temp (F): %i\n",current->maxTempF);
 		printf("Min Temp (F): %i\n",current->minTempF);
