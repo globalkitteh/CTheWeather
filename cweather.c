@@ -19,10 +19,13 @@
 // Structure definition
 struct Node 			// WIP, will figure out what fields exactly we want to save
 {
-    char date[10];		// format YYYYMMDD
-    double temp;
-    // char PUID[11];
-    // int age;
+    char date[10];		// format YYYY-MM-DD, from JSON
+    int avgTempF;
+    int avgTempC;
+    int maxTempF;
+    int maxTempC;
+    int minTempF;
+    int minTempC;
     struct Node *next;
 };
 
@@ -34,6 +37,7 @@ void getHumidity();
 void getPrecipitation();
 void getWind();
 void getTemp();
+void getAvgTemp();
 void getLocation();
 void getAstronomy();
 void sun();
@@ -42,10 +46,11 @@ void rain();
 void partlyCloudy();
 
 // Linked Lists
-void createTempNode();
+void createHistNode();
 void CreateListNoNodes();
 void InsertFront();
 void DeleteEnd();
+void display();
 
 // Global pointer definition
 struct Node *start;
@@ -69,6 +74,8 @@ int main()
 {
 	// Gathers the weather information and stores it in JSON format to page.json
 	getWeather();
+	CreateListNoNodes();
+	createHistNode();
 
 	int repeat = 1;
 	while (repeat == 1)
@@ -80,6 +87,11 @@ int main()
 		scanf("%d", &decision);
 		switch (decision)
 		{
+		case 0: 			// Weather condition
+			createHistNode();
+			display();
+			break;
+
 		case 1: 			// Weather condition
 			break;
 
@@ -118,16 +130,17 @@ int main()
 			exit(1);
 			break;
 
-		case 8:				// History (eventually)
+		case 8:				// History
+			display();
+			break;
+
+		case 9:				// Exit
 			// Testing design functions
 			sun();
 			cloud();
 			rain();
 			partlyCloudy();
-			exit(1);
-			break;
 
-		case 9:				// exit
 			repeat = 0;
 			exit(1);
 			break;
@@ -147,7 +160,7 @@ int main()
 // on what they want to view.
 void displayMenu()
 {
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	// is this necessary? ^^^ -gk
 	printf("\nWhat would you like to view for ");
 	// printf("%s\n",userLocation);		// will add user location if made global
@@ -157,6 +170,7 @@ void displayMenu()
 	printf("\n+------------------------+\n");
 	printf("|    CTheWeather Menu    |\n");
 	printf("+------------------------+\n");
+	printf("| 0 | Save Weather       |\n");
 	printf("| 1 | Weather Condition  |\n");
 	printf("| 2 | Humidity           |\n");
 	printf("| 3 | Temperature        |\n");
@@ -479,31 +493,40 @@ void partlyCloudy()
 
 // Linked List functions ------------------------------------------------------
 
-void createTempNode() 		// needs to be reworked for weather
+void createHistNode()
 {
-    // char fName[20];
-    // char lName[20];
-    // char PUID[11];
-    // int age;
+	int arraylen, i;
+	struct json_object *weather_obj, *weather_array, *weather_array_obj;
+	static const char filename[] = "page.json";
+	weather_obj = json_object_from_file(filename);
+	weather_array = json_object_object_get(weather_obj, "weather");
 
-    // printf("\nCreating New Node: ");
-    // printf("\nEnter fname: ");
-    // scanf("%s", fName);
-    // printf("\nEnter lname: ");
-    // scanf("%s", lName);
-    // printf("\nEnter PUID (10-digit): ");
-    // scanf("%s", PUID);
-    // printf("\nEnter Age: ");
-    // scanf("%d", &age);
+	// weather_array is an array of objects
+	arraylen = json_object_array_length(weather_array);
 
-    temp=(struct Node *)malloc(sizeof(struct Node));
 
-    // temp->age = age;
+	for (i = 0; i < arraylen; i++)
+	{
+		temp=(struct Node *)malloc(sizeof(struct Node));
+		// get the i-th object in weather_array
+		weather_array_obj = json_object_array_get_idx(weather_array, i);
 
-    // strcpy(temp->PUID, PUID);
-    // strcpy(temp->fName, fName);
-    // strcpy(temp->lName, lName);
-    temp->next = NULL;
+    	temp->avgTempF = json_object_get_int(json_object_object_get(weather_array_obj, "avgtempF"));
+    	temp->avgTempC = json_object_get_int(json_object_object_get(weather_array_obj, "avgtempF"));
+    	temp->maxTempF = json_object_get_int(json_object_object_get(weather_array_obj, "maxtempF"));
+    	temp->maxTempC = json_object_get_int(json_object_object_get(weather_array_obj, "maxtempC"));
+    	temp->minTempF = json_object_get_int(json_object_object_get(weather_array_obj, "mintempF"));
+    	temp->minTempC = json_object_get_int(json_object_object_get(weather_array_obj, "mintempC"));
+		strcpy(temp->date, json_object_get_string(json_object_object_get(weather_array_obj, "date")));
+
+		temp->next = NULL;
+
+		current = start;
+		start = temp;
+		temp->next = current;
+		current = NULL;
+	}
+
 }
 
 void CreateListNoNodes()
@@ -516,7 +539,7 @@ void CreateListNoNodes()
 // Insert a new node at the beginning, re-link the things
 void InsertFront()
 {
-    createTempNode();
+    createHistNode();
 
     // we have start pointer -> node 1
     // we have temp sitting to the side
@@ -541,4 +564,26 @@ void DeleteEnd()
     }
 
     current->next=NULL;
+}
+
+// Prints out the list
+void display()
+{
+
+    int i = 0;
+    current = start;
+
+    while (current != NULL)
+    {
+        printf("\nNode %i\n", i);
+		printf("---- %s ----\n",current->date);
+		printf("Avg Temp (F): %i\n",current->avgTempF);
+		printf("Max Temp (F): %i\n",current->maxTempF);
+		printf("Min Temp (F): %i\n",current->minTempF);
+		printf("Avg Temp (C): %i\n",current->avgTempC);
+		printf("Max Temp (C): %i\n",current->maxTempC);
+		printf("Min Temp (C): %i\n",current->minTempC);
+        current = current->next;
+        i++;
+    }
 }
