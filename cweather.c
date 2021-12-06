@@ -174,18 +174,20 @@ void getWeather()
 {
 	/*
 	prefix = https://wttr.in/
-suffix = ?format=j1
+	suffix = ?format=j1
 
-if the user enters: Paris
+	if the user enters: Paris
 
-Make the URL: https://wttr.in/Paris?format=j1
+	Make the URL: https://wttr.in/Paris?format=j1
 
 	Basically it would be prefix + user input + suffix 
 	*/
 
 	char prefix[] = "https://wttr.in/";
 	char suffix[] = "?format=j1";
+
 	char userLocation[100];
+	// userLocation = malloc(sizeof(char[100])); 	// attempt to make location global
 
 	printf("[FOR TESTING PURPOSES enter Paris]\n");	// debug, can remove
 	printf("Enter your location: ");
