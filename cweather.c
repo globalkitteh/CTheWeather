@@ -29,6 +29,7 @@ struct Node 			// WIP, will figure out what fields exactly we want to save
     struct Node *next;
 };
 
+// Git comment
 // ----------------------------------------------------------------------------
 // Prototypes
 void displayMenu();
