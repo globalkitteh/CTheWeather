@@ -13,15 +13,15 @@ Select the number corresponding to the action you would like to take place.
 
 To quit select option 8.
 
-+------------------------+
-|    CTheWeather Menu    |
-+------------------------+
-| 1 | Forecast           |
-| 2 | Humidity           |
-| 3 | Temperature        |
-| 4 | Wind               |
-| 5 | Location           |
-| 6 | Precipitation      |
-| 7 | Astronomy          |
-| 8 | Quit               |
-+---+--------------------+
+	printf("\n+------------------------+\n");
+	printf("|    CTheWeather Menu    |\n");
+	printf("+---+--------------------+\n");
+	printf("| 1 | Forecast           |\n");
+	printf("| 2 | Humidity           |\n");
+	printf("| 3 | Temperature        |\n");
+	printf("| 4 | Wind               |\n");
+	printf("| 5 | Location           |\n");
+	printf("| 6 | Precipitation      |\n");
+	printf("| 7 | Astronomy          |\n");
+	printf("| 8 | Quit               |\n");
+	printf("+---+--------------------+\n");
