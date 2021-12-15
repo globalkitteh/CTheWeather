@@ -1,33 +1,27 @@
-# CTheWeather
+How it works?
 
-Weather info source: https://wttr.in/West+Lafayette+IN
+In order to successfully run cweather.c cURL and JSON libraries dependencies will need to be installed if not already.
 
-## Flow
+sudo apt install libcurl4-openssl-dev
+sudo apt install libjson-c-dev
 
-Justin - Startup
-Justin - 1 - Forecast 
-Jonathan -
+To execute cweather.c run the command gcc -o cweather cweather.c -lcurl -ljson-c
 
-Justin - Error Catching
+When ran, the menu shown below will be displayed.
 
-## To Do
+Select the number corresponding to the action you would like to take place.
 
-- [ ] Display - Jonathan
-    - [ ] Formatting
-    - [ ] Conversion of input data
-    - [ ] Menu/UX
-    - [ ] Tie into history function
-- [ ] Data Sourcing
-    - [ ] Create own curl, or use existing app
-    - [ ] Call function
-    - [ ] Ingress
-    - [ ] Parse
-    - [ ] Send to history function
-- [ ] History - Justin
-    - [ ] Struct
-    - [ ] Ingress and egress
-    - [ ] Linked list management
-- [ ] Presentation - Alaina + Zach
-    - [ ] Skeleton
-    - [ ] Share
-    - [ ] Outline of 7 min presentation
+To quit select option 8.
+
++------------------------+
+|    CTheWeather Menu    |
++------------------------+
+| 1 | Forecast           |
+| 2 | Humidity           |
+| 3 | Temperature        |
+| 4 | Wind               |
+| 5 | Location           |
+| 6 | Precipitation      |
+| 7 | Astronomy          |
+| 8 | Quit               |
++---+--------------------+
