@@ -13,15 +13,15 @@ Select the number corresponding to the action you would like to take place.
 
 To quit select option 8.
 
-	\n+------------------------+\n");
-	|    CTheWeather Menu    |\n");
-	+---+--------------------+\n");
-	| 1 | Forecast           |\n");
-	| 2 | Humidity           |\n");
-	| 3 | Temperature        |\n");
-	| 4 | Wind               |\n");
-	| 5 | Location           |\n");
-	| 6 | Precipitation      |\n");
-	| 7 | Astronomy          |\n");
-	| 8 | Quit               |\n");
-	+---+--------------------+\n");
+	\n+------------------------+
+	|    CTheWeather Menu    
+	+---+--------------------
+	| 1 | Forecast           
+	| 2 | Humidity           
+	| 3 | Temperature        
+	| 4 | Wind               
+	| 5 | Location           
+	| 6 | Precipitation      
+	| 7 | Astronomy          
+	| 8 | Quit               
+	+---+--------------------+
